@@ -2,7 +2,7 @@
   "elements":
   [
 	{ "type": "ValidationTextBox", "name": "IPAdresse", "caption": "IP Adresse" },
-	{ "type": "ValidationTextBox", "name": "Fritzbox Host", "caption": "IP Adresse" },
+	{ "type": "SelectInstance", "name": "FritzboxHost", "caption": "Fritzbox Host" },
 	{ "type": "Label", "label": "Update" },
 	{ "type": "IntervalBox", "name": "Update", "caption": "minutes" }	
   ],
