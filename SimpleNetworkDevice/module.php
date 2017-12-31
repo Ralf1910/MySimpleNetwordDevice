@@ -14,7 +14,7 @@ class SimpleNetworkDevice extends IPSModule {
 
 		// IP Adresse
 		$this->RegisterPropertyString("IPAdresse", "127.0.0.1");
-		$this->RegisterPropertyString("FritzboxHost", "");
+		$this->RegisterPropertyInteger("FritzboxHost", "");
 		$this->RegisterPropertyInteger("Update", 1);
 
 		// Updates einstellen
