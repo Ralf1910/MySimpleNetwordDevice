@@ -9,11 +9,12 @@ class SimpleNetworkDevice extends IPSModule {
 
 
 	public function Create() {
-		// Diese Zeile nicht löschen.
+		// Diese Zeile nicht lÃ¶schen.
 		parent::Create();
 
 		// IP Adresse
 		$this->RegisterPropertyString("IPAdresse", "127.0.0.1");
+		$this->RegisterPropertyString("FritzboxHost", "");
 		$this->RegisterPropertyInteger("Update", 1);
 
 		// Updates einstellen
@@ -21,9 +22,9 @@ class SimpleNetworkDevice extends IPSModule {
 	}
 
 
-	// Überschreibt die intere IPS_ApplyChanges($id) Funktion
+	// Ãœberschreibt die intere IPS_ApplyChanges($id) Funktion
 	public function ApplyChanges() {
-		// Diese Zeile nicht löschen
+		// Diese Zeile nicht lÃ¶schen
 		parent::ApplyChanges();
 
 		$this->SetTimerInterval("Update", $this->ReadPropertyInteger("Update")*60*1000);
@@ -41,9 +42,12 @@ class SimpleNetworkDevice extends IPSModule {
 
 	// Aktualisierung der Variablen
 	public function Update() {
-
-		$power = Sys_Ping($this->ReadPropertyString("IPAdresse"), 1000 );
-		SetValue($this->GetIDForIdent("Power"), $power);
+		
+		if ($this->ReadPropertyString("IPAdresse")<>"") {
+			$power = Sys_Ping($this->ReadPropertyString("IPAdresse"), 1000 );
+			SetValue($this->GetIDForIdent("Power"), $power);
+		} else if ($this->ReadPropertyString("FritzboxHost")<>"")
+			SetValue($this->GetIDForIdent("Power"), getValue($this->ReadPropertyInteger("FritzboxHost")));
 
 	}
 
