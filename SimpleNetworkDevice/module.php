@@ -14,7 +14,7 @@ class SimpleNetworkDevice extends IPSModule {
 
 		// IP Adresse
 		$this->RegisterPropertyString("IPAdresse", "127.0.0.1");
-		$this->RegisterPropertyInteger("FritzboxHost", "");
+		$this->RegisterPropertyString("FritzboxHost", "");
 		$this->RegisterPropertyInteger("Update", 1);
 
 		// Updates einstellen
@@ -47,7 +47,7 @@ class SimpleNetworkDevice extends IPSModule {
 			$power = Sys_Ping($this->ReadPropertyString("IPAdresse"), 1000 );
 			SetValue($this->GetIDForIdent("Power"), $power);
 		} else if ($this->ReadPropertyString("FritzboxHost")<>"")
-			SetValue($this->GetIDForIdent("Power"), getValue($this->ReadPropertyInteger("FritzboxHost")));
+			SetValue($this->GetIDForIdent("Power"), getValue($this->ReadPropertyString("FritzboxHost")));
 
 	}
 
